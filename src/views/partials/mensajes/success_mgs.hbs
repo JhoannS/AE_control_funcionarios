@@ -1,0 +1,19 @@
+ {{#if success}}
+    <div class="notificacion">
+    <div class="notificacion_body">
+        {{success}}
+        <i class="fa-solid fa-circle-check" style="color: #79AC78;"></i> 
+    </div>
+    <div class="progreso_notificacion"></div>
+</div>
+{{/if}}
+
+ {{#if message}}
+    <div class="notificacion">
+    <div class="notificacion_body">
+        {{message}}
+        <i class="fa-solid fa-circle-xmark" style="color: #FF6969;"></i> 
+    </div>
+    <div class="progreso_notificacion"></div>
+</div>
+{{/if}}

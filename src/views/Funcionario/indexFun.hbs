@@ -1,0 +1,321 @@
+<title>Bienvenido nuevamente</title>
+<link rel="stylesheet" href="/css/fun.css">
+{{#if user}}
+
+<body>
+    <section class="contenedor">
+        <main class="contenido panel"></main>
+        <main class="contenido dashboard">
+            <header>
+                <h1>Dashboard</h1>
+                <div class="fecha">
+                    <span class="dia">Calculando...</span>
+                </div>
+            </header>
+
+            <main class="info-perfil">
+                <h3>Informacion del funcionario:</h3>
+                <div class="container">
+                    <div class="main-card">
+                        <div class="cards">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="header-e">
+                                        <div class="informacion">
+                                            <div class="funcionario">
+                                                <div class="img"><i class="fa-brands fa-playstation"></i></div>
+                                                <div class="nombre"> {{user.nombres}} {{user.apellidos}}<span
+                                                        id="texto_a_cambiar_equipo">{{user.equipo_trabajo_id}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="id-equipo">
+                                                <i class="fa-solid fa-bookmark"></i>
+                                                <span> {{user.documento_id}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="footer-e">
+                                            <div class="contador">
+                                                <i class="fa-solid fa-paper-plane"></i>
+                                                <span> {{user.correo}}</span>
+                                            </div>
+                                            <button class="btn-detalles"> <a href="/logout" id="salir">Salir <i
+                                                        class="fa-solid fa-right-from-bracket"></i></a></button>
+                                        </div>
+                                    </div>
+
+                                    <div class="qr"><img src="/img/qr.png" alt="qr"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="button">
+
+                    </div>
+                </div>
+            </main>
+
+            <main class="actividades">
+                <h2>Actividades</h2>
+
+                <article class="pendientes">
+                    <main class="boxP">
+                        <main class="header-act">
+                            <p>Pendientes: <span class="numero-cant" id="contador">0</span></p>
+                        </main>
+                        <main class="section-act">
+                            {{#if evidencias}}
+                            {{#if evidenciasP}}
+                            {{#each evidenciasP}}
+                            <div class="box" id="pendientes">
+                                <div class="logo-datos">
+                                    <div class="logo_funcionario">
+                                        <div class="icono-act">
+                                            <i class="fa-regular fa-folder-closed">
+                                                <p>{{titulo}}</p>
+                                            </i>
+                                            <span>{{fecha_formateada}} <br> {{nombre_funcionario}}
+                                                {{apellido_funcionario}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="nombre-ofi">
+                                        <span>{{descripcion}}</span>
+                                        <div class="fecha-botonPendientes">
+                                            <a href="/indexFun/subirEvidencia/{{this.evidencia_trabajo_id}}">
+                                                <button class="pendientes-btn"> {{estado}}</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                            {{else}}
+                            <p>No hay evidencias pendientes</p>
+                            {{/if}}
+                        </main>
+                        {{else}}
+                        <p>No hay evidencias pendientes para ti</p>
+                        {{/if}}
+                        </div>
+                    </main>
+                </article>
+
+
+                <article class="enviadas">
+                    <main class="boxP">
+                        <main class="header-act">
+                            <p>Evidencias enviadas: <span class="numero-cant" id="contador2">0</span></p>
+                        </main>
+                        <main class="section-act">
+            {{#if evidenciasD}}
+            {{#each evidenciasD}}
+            <div class="box" id="enviadas">
+                <div class="logo-datos">
+                    <div class="logo_funcionario">
+                        <div class="icono-act fin">
+                            <i class="fa-regular fa-folder-closed">
+                                <p>{{titulo}}</p>
+                            </i>
+                            <span>{{fecha_formateada2}} <br> {{nombre_funcionario}} {{apellido_funcionario}}</span>
+                        </div>
+                    </div>
+                    <div class="nombre-ofi">
+                        <span>{{descripcion}}</span>
+                        <div class="fecha-botonPendientes">
+                            <a href="/indexFun/descargarPDF/{{evidencia_trabajo_id}}">
+                            <button class="entregadas-btn"> {{archivoPdf}}</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+            {{else}}
+            <p>Aun no has enviado ninguna evidencia</p>
+            {{/if}}
+        </main>
+                    </main>
+                </article>
+
+
+            </main>
+
+
+
+            <footer>
+                <div class="logo-f">
+                    <img src="/img/Logos/SGDEA.svg" alt="SGDEA">
+                    <div class="informacion-f">
+                        <h3>Grupo de Gestion Documental</h3>
+
+                        <span>Hecho por Grupo análisisis y desarrollo de software <a href="">correo@gmail.com</a></span>
+                    </div>
+
+                </div>
+                <div class="cajas-f">
+                    <div class="info-f">
+                        <h4>Informacion</h4>
+                        <span> Av. Eldorado 103-15</span><br>
+                        <span>EDIFICIO CENTRAL AEROCIVIL</span><br>
+                        <span>Bogotá D.C. Colombia</span><br>
+
+                    </div>
+                    <div class="info-f">
+                        <h4>Atencion al ciudadano</h4>
+                        <span>Telefono: 6012963336</span><br>
+                        <span><a href="mailto:archivogeneral@aerocivil.gov.co">archivogeneral@aerocivil.gov.co</a>
+                        </span><br>
+                        <span>HORARIO DE ATENCIÓN: Lunes a viernes 8:00am a 4:30pm</span><br>
+
+                    </div>
+                </div>
+
+            </footer>
+        </main>
+
+        <!-- modal de subir evidencias -->
+        <div id="modal_containerS" class="modal-containerS">
+            <div class="modalS">
+                <div class="wrapper">
+                    <p class="title">Subir evidencia pendiente</p>
+                    <p class="message">Recuerda que el unico tipo de archivo disponible es PDF.
+                    </p>
+                    <form action="#" class="">
+                        <input class="file-input" type="file" name="file" hidden>
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Sube la evidencia desde tu ordenador.</p>
+                    </form>
+                    <section class="progress-area"></section>
+                    <section class="uploaded-area"></section>
+                </div>
+                <div class="botones-form">
+                    <span class="cancelar" id="closeS">Regresar</span>
+                    <button class="crear" name="crear">Añadir</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <script>
+
+        const $fecha = document.querySelector('.dia');
+
+        function Relojdigital() {
+            let f = new Date(),
+                dia = f.getDate(),
+                mes = f.getMonth(),
+                anio = f.getFullYear()
+            semana = f.getDay()
+
+            dia = ('0' + dia).slice(-2);
+
+
+
+            let mesN = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+            let nombreD = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
+            let showMes = (mesN[mes])
+            let showdia = (nombreD[semana])
+            $fecha.innerHTML = `${showdia}, ${dia}  ${showMes} de ${anio}`
+        }
+        setInterval(() => {
+            Relojdigital()
+        }, 1000);
+
+        // ENVIAR ACTIVIDAD
+        const openS = document.getElementById('openS');
+        const modal_containerS = document.getElementById('modal_containerS');
+        const closeS = document.getElementById('closeS');
+
+        openS.addEventListener('click', () => {
+            modal_containerS.classList.add('showS');
+        });
+
+        closeS.addEventListener('click', () => {
+            modal_containerS.classList.remove('showS');
+        });
+
+
+        const form = document.querySelector("form"),
+            fileInput = document.querySelector(".file-input"),
+            progressArea = document.querySelector(".progress-area"),
+            uploadedArea = document.querySelector(".uploaded-area");
+
+        // form click event
+        form.addEventListener("click", () => {
+            fileInput.click();
+        });
+
+        fileInput.onchange = ({ target }) => {
+            let file = target.files[0]; //getting file [0] this means if user has selected multiple files then get first one only
+            if (file) {
+                let fileName = file.name; //getting file name
+                if (fileName.length >= 12) { //if file name length is greater than 12 then split it and add ...
+                    let splitName = fileName.split('.');
+                    fileName = splitName[0].substring(0, 13) + "... ." + splitName[1];
+                }
+                uploadFile(fileName); //calling uploadFile with passing file name as an argument
+            }
+        }
+        // file upload function
+        function uploadFile(name) {
+            let xhr = new XMLHttpRequest(); //creating new xhr object (AJAX)
+            xhr.open("POST", "php/upload.php"); //sending post request to the specified URL
+
+            let data = new FormData(); //FormData is an object to easily send form data
+            let files = fileInput.files; //getting all selected files
+
+            if (files.length > 0) {
+                for (let i = 0; i < files.length; i++) {
+                    let file = files[i];
+                    let fileName = file.name; //getting file name
+                    if (fileName.length >= 12) { //if file name length is greater than 12 then split it and add ...
+                        let splitName = fileName.split('.');
+                        fileName = splitName[0].substring(0, 13) + "... ." + splitName[1];
+                    }
+                    data.append('files[]', file); //append each file to FormData object
+                    // Display file details before uploading
+                    let fileSize = (file.size / 1024).toFixed(2) + " KB"; //convert bytes into KB
+                    let detailsHTML = `<div class="details">
+                                  <span class="name">${fileName}</span>
+                                  <span class="size">${fileSize}</span>
+                                </div>`;
+                    let progressHTML = `<div class="progress-bar">
+                                  <div class="progress"></div>
+                                </div>`;
+                    let listItemHTML = `<li class="row">
+                                  <i class="fas fa-file-alt"></i>
+                                  ${detailsHTML}
+                                  ${progressHTML}
+                                  <button class="pendientes-btn">Eliminar</button>
+                                </li>`;
+                    uploadedArea.insertAdjacentHTML("beforeend", listItemHTML); //add file details to uploaded area
+                }
+            }
+
+            // Event listener to handle delete button click
+            uploadedArea.addEventListener('click', (e) => {
+                if (e.target.classList.contains('pendientes-btn')) {
+                    const listItem = e.target.closest('.row');
+                    listItem.remove(); // Remove the file from the DOM
+                }
+            });
+
+            xhr.upload.addEventListener("progress", ({ loaded, total }) => { //file uploading progress event
+                let fileLoaded = Math.floor((loaded / total) * 100);  //getting percentage of loaded file size
+                let progress = listItem.querySelector(".progress"); //get the progress element of the corresponding file
+                progress.style.width = `${fileLoaded}%`; //update progress bar width
+                if (loaded == total) {
+                    progressArea.innerHTML = ""; //clear progress area after uploading
+                }
+            });
+
+
+            xhr.send(data); //sending form data
+        }
+
+
+    </script>
+</body>
+{{else}}
+<p>Iniciar sesion primero <a href="/">Iniciar sesion</a></p>
+{{/if}}

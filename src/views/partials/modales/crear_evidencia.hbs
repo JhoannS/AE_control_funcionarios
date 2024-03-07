@@ -1,0 +1,50 @@
+<!-- modal de crear evidencias -->
+<div id="modal_containerE" class="modal-containerE">
+    <div class="modalE">
+        <form class="form" action="/indexAdmin/addEvidencia" method="post">
+            <p class="title">Crea una nueva evidencia de Macro actividad</p>
+            <p class="message">Recuerda que para crear una evidencia, debe estar previamente creado el funcionario.
+            </p>
+            <div class="flex">
+                
+                <div class="select">
+                    <select name="funcionario_id" id="format">
+                        <option selected disabled>Funcionario</option>
+                        {{#if funcionarios}}
+                        {{#each funcionarios}}
+                        <option value="{{documento_id}}">{{equipo_trabajo_id}} - {{nombres}} {{apellidos}}</option>
+                        {{/each}}
+                        {{else}}
+                        <option disabled>No hay funcionario registrados</option>
+                        {{/if}}
+
+                    </select>
+                </div>
+            </div>
+            <div class="flex">
+            </div>
+            <div class="flex">
+                <label>
+                    <span>Título</span>
+                    <input placeholder="" type="text" class="input" name="titulo">
+                </label>
+                <label>
+                    <span>Descripción</span>
+                    <input placeholder="" type="text" class="input" name="descripcion">
+                </label>
+            </div>
+            <div class="flex">
+            </div>
+            <div class="flex">
+                <label>
+                    <span>Fecha entrega</span>
+                    <input placeholder="" type="date" class="input" name="fecha_entrega">
+                    
+                </label>
+            </div>
+            <div class="botones-form">
+                <span class="cancelar" id="closeE">Regresar</span>
+                <button class="crear" name="crear">Añadir</button>
+        </form>
+    </div>
+</div>

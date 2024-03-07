@@ -1,0 +1,26 @@
+<title>Bienvenido nuevamente</title>
+<link rel="stylesheet" href="/css/index.css">
+<body>
+{{#if user}}
+    <section class="contenedor">
+        <main class="contenido panel"></main>
+        {{> indexAdmin/dashboard}}
+        {{> indexAdmin/actividades}}
+        {{> modales/crear_evidencia}}
+    </section>
+
+{{else}}
+<p>Debe iniciar sesion primero <a href="/">Iniciar Sesion</a></p>
+{{/if}}
+    
+
+
+
+
+    
+
+
+
+   
+
+</body>

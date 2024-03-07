@@ -1,0 +1,62 @@
+<!-- modal de añadir funcionario -->
+    <div id="modal_containerAñadirF" class="modal-containerF">
+        <div class="modalF">
+            <form class="form" action="/indexAdmin" method="post">
+
+                <p class="title">Crea un nuevo funcionario</p>
+                <p class="message">Recuerda que debes llenar los campos correspondientes de manera correcta para que sea
+                    unregistro exitoso.</p>
+                <div class="flex">
+                    <label>
+                        <span>Documento id</span>
+                        <input placeholder="" type="text" class="input" name="documento_id" required>
+                    </label>
+                    <label>
+                        <span>Nombres</span>
+                        <input placeholder="" type="text" class="input" name="nombres" required>
+                    </label>
+                </div>
+                <div class="flex">
+                    <label>
+                        <span>Apellidos</span>
+                        <input placeholder="" type="text" class="input" name="apellidos" required>
+                    </label>
+                    <label>
+                        <span>Telefono</span>
+                        <input placeholder="" type="number" class="input" name="telefono" required>
+                    </label>
+                </div>
+                <div class="flex">
+                    <label>
+                        <span>Correo</span>
+                        <input placeholder="" type="email" class="input" name="correo" required>
+                    </label>
+
+                </div>
+                <div class="flex">
+                      <div class="select">
+                        <select name="equipo_trabajo_id" id="format" required>
+                            <option selected disabled>Equipo</option>
+                            {{#each equiposTrabajo}}
+                            <option value="{{equipo_trabajo_id}}">{{nombre}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="select">
+                        <select name="instrumento_archivistico_id" id="format" required>
+                            <option selected disabled>Instrumento archivistico</option>
+                            {{#each instrumentoArchivistico}}
+                            <option value="{{instrumento_archivistico_id}}">{{nombre}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                   
+                </div> 
+
+                <div class="botones-form">
+                    <span class="cancelar" id="closeAñadirF">Regresar</span>
+                    <button class="crear">Crear</button>
+                </div>
+            </form>
+        </div>
+    </div>

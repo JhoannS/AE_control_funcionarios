@@ -1,0 +1,86 @@
+
+<main class="contenido actividades">
+    <h2>Actividades</h2>
+    <article class="pendientes">
+
+
+        <main class="header-act">
+            <p>Pendientes: <span class="numero-cant" id="contador">0</span></p>
+            <div class="boton" id="openE">
+                <i class="fa-solid fa-circle-plus"></i>
+            </div>
+
+
+        </main>
+
+        <main class="section-act">
+            {{#if evidencias}}
+            {{#if evidenciasP}}
+            {{#each evidenciasP}}
+            <div class="box" id="pendientes">
+                <div class="logo-datos">
+                    <div class="logo_funcionario">
+                        <div class="icono-act">
+                            <i class="fa-regular fa-folder-closed">
+                                <p>{{titulo}}</p>
+                            </i>
+                            <span>{{fecha_formateada}} <br> {{nombre_funcionario}} {{apellido_funcionario}}</span>
+                        </div>
+                    </div>
+                    <div class="nombre-ofi">
+                        <span>{{descripcion}}</span>
+                        <div class="fecha-botonPendientes">
+                            <a href="/indexAdmin/subirEvidencia/{{this.evidencia_trabajo_id}}">
+                                <button class="pendientes-btn"> {{estado}}</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+            {{else}}
+            <p>No hay evidencias pendientes</p>
+            {{/if}}
+        </main>
+        {{else}}
+            <p>No hay evidencias pendientes para ti</p>
+{{/if}}
+        </div>
+
+    </article>
+
+    <article class="enviadas">
+        <main class="header-act">
+            <p>Evidencias enviadas: <span class="numero-cant" id="contador2">0</span></p>
+
+        </main>
+        <main class="section-act">
+            {{#if evidenciasD}}
+            {{#each evidenciasD}}
+            <div class="box" id="enviadas">
+                <div class="logo-datos">
+                    <div class="logo_funcionario">
+                        <div class="icono-act fin">
+                            <i class="fa-regular fa-folder-closed">
+                                <p>{{titulo}}</p>
+                            </i>
+                            <span>{{fecha_formateada2}} <br> {{nombre_funcionario}} {{apellido_funcionario}}</span>
+                        </div>
+                    </div>
+                    <div class="nombre-ofi">
+                        <span>{{descripcion}}</span>
+                        <div class="fecha-botonPendientes">
+                            <a href="/indexAdmin/descargarPDF/{{evidencia_trabajo_id}}">
+                            <button class="entregadas-btn"> {{archivoPdf}}</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+            {{else}}
+            <p>Aun no han enviado evidencias para descargar.</p>
+            {{/if}}
+        </main>
+
+    </article>
+
+</main>

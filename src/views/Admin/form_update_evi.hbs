@@ -1,0 +1,113 @@
+<title>Actualizar Evidencia</title>
+<link rel="stylesheet" href="/css/index.css">
+
+<body>
+    <section class="contenedor">
+        <main class="contenido panel"></main>
+        <main class="contenido dashboard" style="width: 100%;">
+            <header>
+
+
+
+                <h1>Editar evidencia </h1>
+
+                <div class="fecha">
+                    <span class="dia">Calculando...</span>
+                </div>
+
+                <div class="perfil">
+                    <img src="/img/Logos/Logo.svg" alt="perfil" onclick="menuP()">
+                    <div class="subperfil" id="subMenuP">
+                        <div class="submenu-p">
+                            <div class="info-p">
+                                <i class="fa-solid fa-plane-up"></i>
+                                <h3>Uriel Bedoya</h3>
+                            </div>
+                            <hr>
+
+                            <a href="#" class="enlaces-p">
+                                <i class="fa-solid fa-user"></i>
+                                <p>Editar perfil</p>
+                                <span><i class="fa-solid fa-location-arrow"></i></span>
+                            </a>
+
+
+                            <a href="#" class="enlaces-p">
+                                <i class="fa-solid fa-gear"></i>
+                                <p>Configuraciones</p>
+                                <span><i class="fa-solid fa-location-arrow"></i></span>
+                            </a>
+
+                            <a href="#" class="enlaces-p">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <p>Soporte</p>
+                                <span><i class="fa-solid fa-location-arrow"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <p><a href="/admin" class="a">Inicio</a> > Editar Evidencia: #{{evidencia.evidencia_trabajo_id}}</p>
+            <section class="formularioU">
+                <form class="formU" action="/indexAdmin/actualizarEvi/{{evidencia.evidencia_trabajo_id}}" method="post">
+                    <p class="titleU">Editar evidencia:</p>
+                    <p class="messageU">Recuerda que debes llenar los campos correspondientes de manera correcta.</p>
+                    <div class="flexU">
+
+                        <div class="select">
+                            <select name="funcionario_id" id="format">
+                                <option disabled>Funcionarios</option>
+                                <option selected disabled id="texto_a_cambiar_equipo">{{evidencia.funcionario_id}}
+                                </option>
+                                {{#each funcionario}}
+                                <option value="{{documento_id}}">{{nombres}} {{apellidos}}</option>
+                                {{/each}}
+
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="flex">
+                        <label>
+                            <span>Titulo</span>
+                            <input type="text" class="input" name="titulo" value="{{evidencia.titulo}}">
+                        </label>
+                        <label>
+                            <span>Descripción</span>
+                            <input type="text" class="input" name="descripcion" value="{{evidencia.descripcion}}">
+                        </label>
+
+                    </div>
+                    <div class="flex">
+                        <label>
+                            <span>Fecha entrega</span>
+                            <input type="date" class="input" id="fecha_entrega" name="fecha_entrega" value="{{ fechaActual }}">
+                           
+                        </label>
+                        <div class="select">
+                            <select name="estado" id="format">
+                                <option disabled>Funcionarios</option>
+                                <option selected disabled id="texto_a_cambiar_equipo" value="{{evidencia.estado}}">
+                                    {{evidencia.estado}}
+                                </option>
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="Entregado">Entregado</option>
+                                <option value="Revision">Revisión</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex">
+
+
+                    </div>
+                    <div class="botones-formU">
+                        <a href="/indexAdmin" class="cancelarU"><span>Volver</span></a>
+                        <button class="crearU" name="cancelar">Editar</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+</body>

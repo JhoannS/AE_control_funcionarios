@@ -1,0 +1,82 @@
+<title>Subir evidencia</title>
+<link rel="stylesheet" href="/css/index.css">
+
+<body>
+    <section class="contenedor">
+        <main class="contenido panel"></main>
+        <main class="contenido dashboard" style="width: 100%;">
+            <header>
+
+                <h1>Subir Evidencia</h1>
+
+                <div class="fecha">
+                    <span class="dia">Calculando...</span>
+                </div>
+
+                <div class="perfil">
+                    <img src="/img/Logos/Logo.svg" alt="perfil" onclick="menuP()">
+                    <div class="subperfil" id="subMenuP">
+                        <div class="submenu-p">
+                            <div class="info-p">
+                                <i class="fa-solid fa-plane-up"></i>
+                                <h3>Uriel Bedoya</h3>
+                            </div>
+                            <hr>
+
+                            <a href="#" class="enlaces-p">
+                                <i class="fa-solid fa-user"></i>
+                                <p>Editar perfil</p>
+                                <span><i class="fa-solid fa-location-arrow"></i></span>
+                            </a>
+
+
+                            <a href="#" class="enlaces-p">
+                                <i class="fa-solid fa-gear"></i>
+                                <p>Configuraciones</p>
+                                <span><i class="fa-solid fa-location-arrow"></i></span>
+                            </a>
+
+                            <a href="#" class="enlaces-p">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <p>Soporte</p>
+                                <span><i class="fa-solid fa-location-arrow"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            {{#each evidencias}}
+            <p><a href="/admin" class="a">Inicio</a> > Subir evidencia #{{evidencia_trabajo_id}}</p>
+            
+
+            <!-- modal de subir evidencias -->
+            <div class="modalsubir">
+                <div class="modalS">
+                    <div class="wrapper">
+                        <p class="title">Subir evidencia pendiente</p>
+                        <p class="message">Recuerda que el único tipo de archivo disponible es PDF.</p>
+
+                        <form action="/indexAdmin/SubirEvidencia/{{evidencia_trabajo_id}}" enctype="multipart/form-data"
+                            class="formFile" id="formSubirEvidencias" method="post">
+                            
+                            
+        <input class="file-input" type="file" name="archivoPdf" hidden accept=".pdf">
+        <input type="hidden" name="fecha_actualizacion" value="{{fecha_actual}}">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Sube la evidencia desde tu ordenador</p>
+                       
+
+                        
+                    </div>
+                    <section class="progress-area i"></section>
+                        <section class="uploaded-area i"></section>
+                    <div class="botones-formU">
+                        <a href="/indexAdmin" class="cancelarU"><span>Volver</span></a>
+                        <button class="crearE" name="cancelar">Enviar evidencia</button>
+                    </div>
+                     </form>
+                </div>
+            </div>
+{{/each}}
+        </main>
+</body>

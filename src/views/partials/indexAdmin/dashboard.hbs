@@ -1,0 +1,375 @@
+
+<main class="contenido dashboard">
+    <header>
+        <h1>Dashboard</h1>
+        <div class="fecha">
+            <span class="dia">Calculando...</span>
+        </div>
+
+        <div class="perfil">
+            <img src="/img/Logos/Logo.svg" alt="perfil" onclick="menuP()">
+            <div class="subperfil" id="subMenuP">
+                <div class="submenu-p">
+                    <div class="info-p">
+                        <h3>{{user.nombres}}</h3>
+                    </div>
+                    <hr>
+
+                    <a href="#" class="enlaces-p">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Editar perfil</p>
+                        <span><i class="fa-solid fa-location-arrow"></i></span>
+                    </a>
+
+
+                    <a href="#" class="enlaces-p">
+                        <i class="fa-solid fa-gear"></i>
+                        <p>Configuraciones</p>
+                        <span><i class="fa-solid fa-location-arrow"></i></span>
+                    </a>
+
+                    <a href="#" class="enlaces-p">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p>Soporte</p>
+                        <span><i class="fa-solid fa-location-arrow"></i></span>
+                    </a>
+                     <a href="/logout" class="enlaces-p">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <p>Salir</p>
+                        <span><i class="fa-solid fa-location-arrow"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="equipos">
+        <h3>Equipos de trabajo</h3>
+        <div class="container">
+            <input type="radio" name="dot" id="one" />
+            <input type="radio" name="dot" id="two" />
+            <input type="radio" name="dot" id="three" />
+            <input type="radio" name="dot" id="four" />
+            <div class="main-card">
+                <div class="cards">
+                    <div class="card">
+                        <div class="content">
+                            <div class="header-e">
+                                <div class="informacion">
+                                    <div class="funcionario">
+                                        <div class="img"></div>
+                                        <div class="nombre">Uriel Bedoya <span> Coordinación</span>
+
+                                            </span></div>
+                                    </div>
+                                    <div class="id-equipo">
+                                        <i class="fa-solid fa-bookmark"></i>
+                                        <span>1</span>
+                                    </div>
+                                </div>
+                                <div class="footer-e">
+                                    <div class="contador">
+                                        <i class="fa-solid fa-users"></i>
+                                        <span id="contadorCor"></span>
+                                    </div>
+                                    <button class="btn-detalles" id="openC">Detalles <i
+                                            class="fa-solid fa-angle-down"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="qr"><img src="/img/qr.png" alt="qr"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="cards">
+                    <div class="card">
+                        <div class="content">
+                            <div class="header-e">
+                                <div class="informacion">
+                                    <div class="funcionario">
+                                        <div class="img"></div>
+                                        <div class="nombre">Melquisidec <span> Administración archivo
+                                                central</span></div>
+                                    </div>
+                                    <div class="id-equipo">
+                                        <i class="fa-solid fa-bookmark"></i>
+                                        <span>2</span>
+                                    </div>
+                                </div>
+                                <div class="footer-e">
+                                    <div class="contador">
+                                        <i class="fa-solid fa-users"></i>
+                                        <span id="contadorAAC"></span>
+                                    </div>
+                                    <button class="btn-detalles" id="openAAC">Detalles <i
+                                            class="fa-solid fa-angle-down"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="qr"><img src="/img/qr.png" alt="qr"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="cards">
+                    <div class="card">
+                        <div class="content">
+                            <div class="header-e">
+                                <div class="informacion">
+                                    <div class="funcionario">
+                                        <div class="img"></div>
+                                        <div class="nombre">Uriel Bedoya <span> Lineamientos archivos de
+                                                gestión</span></div>
+                                    </div>
+                                    <div class="id-equipo">
+                                        <i class="fa-solid fa-bookmark"></i>
+                                        <span>3</span>
+                                    </div>
+                                </div>
+                                <div class="footer-e">
+                                    <div class="contador">
+                                        <i class="fa-solid fa-users"></i>
+                                        <span id="contadorLAG"></span>
+                                    </div>
+                                    <button class="btn-detalles" id="openLAG">Detalles <i
+                                            class="fa-solid fa-angle-down"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="qr"><img src="/img/qr.png" alt="qr"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="cards">
+                    <div class="card">
+                        <div class="content">
+                            <div class="header-e">
+                                <div class="informacion">
+                                    <div class="funcionario">
+                                        <div class="img"></div>
+                                        <div class="nombre">Uriel Bedoya <span> Administración documental
+                                                SGDEA</span></div>
+                                    </div>
+                                    <div class="id-equipo">
+                                        <i class="fa-solid fa-bookmark"></i>
+                                        <span>4</span>
+                                    </div>
+                                </div>
+                                <div class="footer-e">
+                                    <div class="contador">
+                                        <i class="fa-solid fa-users"></i>
+                                        <span id="contadorADS"></span>
+                                    </div>
+                                    <button class="btn-detalles" id="openADS">Detalles <i
+                                            class="fa-solid fa-angle-down"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="qr"><img src="/img/qr.png" alt="qsr"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="button">
+                <label for="one" class="active one"></label>
+                <label for="two" class="two"></label>
+                <label for="three" class="three"></label>
+                <label for="four" class="four"></label>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="funcionarios-n">
+        <h3>Funcionarios: <span id="contadorFun">0</span></h3>
+
+        <main class="home_funcionarios">
+
+            <div class="header-form">
+                <div class="buscador">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" name="" id="inputBusqueda" placeholder="Buscar...">
+                </div>
+
+                <div class="boton" id="openAñadirF">
+                    <i class="fa-solid fa-circle-plus"></i>
+                </div>
+
+            </div>
+            <br>
+            <form action="" class="funcionariosf">
+                <table class="tablaf" id="tablaf">
+                    <thead>
+                        {{#if funcionarios}}
+                        <tr class="headf">
+                            <th class="icon-table"><i class="fa-solid fa-key"></i></i> </th>
+                            <th>Nombre </th>
+                            <th>Apellido</th>
+                            <th>Telefono</th>
+                            <th>Correo</th>
+                            <th>equipo</th>
+                            <th>Instrumento archivistico</th>
+                            <th>Creacion</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="cuerpof" class="lista">
+
+                        {{#each funcionarios}}
+                        <tr>
+                            <td>{{documento_id}}</td>
+                            <td>{{nombres}}</td>
+                            <td>{{apellidos}}</td>
+                            <td>{{telefono}}</td>
+                            <td id="correo">{{correo}}</td>
+                            <td id="texto_a_cambiar_equipo">{{equipo_trabajo_id}}</td>
+                            <td id="texto_a_cambiar_instrumento">{{instrumento_archivistico_id}}</td>
+                            <td>{{timeago fecha_creacion}}</td>
+                            <td>
+                                <div class="options-container">
+                                    <a href="/indexAdmin/eliminarFun/{{documento_id}}" class="a"
+                                        onclick="return confirm('¿Estás seguro de eliminar este Funcionario?');">
+                                        <i class="fa-solid fa-circle-xmark" id="eliminar"></i>
+                                    </a>
+
+
+                                    <a href="/indexAdmin/actualizarFun/{{documento_id}}" class="a">
+                                        <i class="fa-solid fa-pen-to-square" id="editar"></i></a>
+                                </div>
+                            </td>
+
+                            </td>
+
+                        </tr>
+
+                        {{/each}}
+                        {{else}}
+                        <h4>No hay funcionarios registrados</h4>
+                        {{/if}}
+
+                    </tbody>
+
+
+                </table>
+            </form>
+
+
+        </main>
+    </section>
+
+    <section class="funcionarios-n">
+        <h3>Evidencias de trabajo: <span id="contadorEvi">0</span></h3>
+
+        <main class="home_funcionarios">
+
+            <div class="header-form">
+                <div class="buscador">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" name="" id="inputBusquedaEvi" placeholder="Buscar...">
+                </div>
+            </div>
+            <br>
+            <form action="" class="funcionariosf">
+                <table class="tablaf" id="tablae">
+                    <thead>
+                        {{#if evidencias}}
+                        <tr class="headf">
+                            <th class="icon-table"><i class="fa-solid fa-key"></i></i> </th>
+                            <th>Funcionario</th>
+                            <th>Titulo</th>
+                            <th>Descripción</th>
+                            <th>Fecha creación</th>
+                            <th>Fecha de entrega</th>
+                            <th>Finalizacion</th>
+                            <th>Estado</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="cuerpof" class="listaEvi">
+
+                        {{#each evidencias}}
+                        <tr>
+                            <td>{{evidencia_trabajo_id}}</td>
+                            <td>{{nombre_funcionario}} {{apellido_funcionario}}</td>
+                            <td>{{titulo}}</td>
+                            <td>{{descripcion}}</td>
+                            <td>{{timeago fecha_creacion}}</td>
+                            <td>{{fecha_formateada}}</td>
+                            <td>{{fecha_formateada2}}</td>
+                            <td>{{estado}}</td>
+                            <td>
+                                <div class="options-container">
+                                    <a href="/indexAdmin/eliminarEvi/{{evidencia_trabajo_id}}" class="a"
+                                        onclick="return confirm('¿Estás seguro de eliminar esta Evidencia?');">
+                                        <i class="fa-solid fa-circle-xmark" id="eliminar"></i></i></a>
+
+                                    <a href="/indexAdmin/actualizarEvi/{{evidencia_trabajo_id}}" class="a"><i
+                                            class="fa-solid fa-pen-to-square" id="editar"></i></a>
+
+                                    <a href="/indexAdmin/descargarPDF/{{evidencia_trabajo_id}}" class="a"><i
+                                            class="fa-solid fa-download" id="descargar"></i></a>
+
+                                </div>
+                            </td>
+
+                        </tr>
+
+                        {{/each}}
+                 
+                        {{else}}
+                        <h4>No hay evidencias asignadas</h4>
+                        {{/if}}
+
+                    </tbody>
+
+
+                </table>
+            </form>
+
+
+        </main>
+    </section>
+
+    <footer>
+        <div class="logo-f">
+            <img src="/img/Logos/SGDEA.svg" alt="SGDEA">
+            <div class="informacion-f">
+                <h3>Grupo de Gestion Documental</h3>
+
+                <span>Hecho por Grupo análisisis y desarrollo de software <a href="">correo@gmail.com</a></span>
+            </div>
+
+        </div>
+        <div class="cajas-f">
+            <div class="info-f">
+                <h4>Informacion</h4>
+                <span> Av. Eldorado 103-15</span><br>
+                <span>EDIFICIO CENTRAL AEROCIVIL</span><br>
+                <span>Bogotá D.C. Colombia</span><br>
+
+            </div>
+            <div class="info-f">
+                <h4>Atencion al ciudadano</h4>
+                <span>Telefono: 6012963336</span><br>
+                <span><a href="mailto:archivogeneral@aerocivil.gov.co">archivogeneral@aerocivil.gov.co</a>
+                </span><br>
+                <span>HORARIO DE ATENCIÓN: Lunes a viernes 8:00am a 4:30pm</span><br>
+
+            </div>
+        </div>
+
+    </footer>
+</main>
+{{> modales/detalles_Coodinacion}}
+{{> modales/detalles_AAC}}
+{{> modales/detalles_LAG}}
+{{> modales/detalles_ADS}}
+{{> modales/crear_funcionario}}
+

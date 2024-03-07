@@ -1,0 +1,57 @@
+<title>Subir evidencia</title>
+<link rel="stylesheet" href="/css/index.css">
+
+{{#if user}}
+
+<body>
+    <section class="contenedor">
+        <main class="contenido panel"></main>
+        <main class="contenido dashboard" style="width: 100%;">
+            <header>
+
+                <h1>Subir Evidencia</h1>
+
+                <div class="fecha">
+                    <span class="dia">Calculando...</span>
+                </div>
+
+               
+            </header>
+            {{#each evidencias}}
+            <p><a href="/indexFun" class="a">Inicio</a> > Subir evidencia #{{evidencia_trabajo_id}}</p>
+            
+
+            <!-- modal de subir evidencias -->
+            <div class="modalsubir">
+                <div class="modalS">
+                    <div class="wrapper">
+                        <p class="title">Subir evidencia pendiente</p>
+                        <p class="message">Recuerda que el único tipo de archivo disponible es PDF.</p>
+
+                        <form action="/indexFun/SubirEvidencia/{{evidencia_trabajo_id}}" enctype="multipart/form-data"
+                            class="formFile" id="formSubirEvidencias" method="post">
+                            
+                            
+        <input class="file-input" type="file" name="archivoPdf" hidden accept=".pdf">
+        <input type="hidden" name="fecha_actualizacion" value="{{fecha_actual}}">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Sube la evidencia desde tu ordenador</p>
+                       
+
+                        
+                    </div>
+                    <section class="progress-area i"></section>
+                        <section class="uploaded-area i"></section>
+                    <div class="botones-formU">
+                        <a href="/indexFun" class="cancelarU"><span>Volver</span></a>
+                        <button class="crearE" name="cancelar">Enviar evidencia</button>
+                    </div>
+                     </form>
+                </div>
+            </div>
+{{/each}}
+        </main>
+</body>
+{{else}}
+<p>Iniciar sesion primero</p>
+{{/if}}

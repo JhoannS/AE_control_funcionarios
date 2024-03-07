@@ -1,0 +1,125 @@
+<title>Actualizar Funcionario</title>
+<link rel="stylesheet" href="/css/index.css">
+
+<body>
+    <section class="contenedor">
+        <main class="contenido panel"></main>
+        <main class="contenido dashboard" style="width: 100%;">
+            <header>
+
+
+
+                <h1>Editar funcionario </h1>
+
+                <div class="fecha">
+                    <span class="dia">Calculando...</span>
+                </div>
+
+                <div class="perfil">
+                    <img src="/img/Logos/Logo.svg" alt="perfil" onclick="menuP()">
+                    <div class="subperfil" id="subMenuP">
+                        <div class="submenu-p">
+                            <div class="info-p">
+                                <i class="fa-solid fa-plane-up"></i>
+                                <h3>Uriel Bedoya</h3>
+                            </div>
+                            <hr>
+
+                            <a href="#" class="enlaces-p">
+                                <i class="fa-solid fa-user"></i>
+                                <p>Editar perfil</p>
+                                <span><i class="fa-solid fa-location-arrow"></i></span>
+                            </a>
+
+
+                            <a href="#" class="enlaces-p">
+                                <i class="fa-solid fa-gear"></i>
+                                <p>Configuraciones</p>
+                                <span><i class="fa-solid fa-location-arrow"></i></span>
+                            </a>
+
+                            <a href="#" class="enlaces-p">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <p>Soporte</p>
+                                <span><i class="fa-solid fa-location-arrow"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <p><a href="/admin" class="a">Inicio</a> > Editar funcionario: {{usuario.nombres}} {{usuario.apellidos}}</p>
+            <section class="formularioU">
+                <form class="formU" action="/indexAdmin/actualizarFun/{{usuario.documento_id}}" method="post">
+                    <p class="titleU">Editar Funcionario:</p>
+                    <p class="messageU">Recuerda que debes llenar los campos correspondientes de manera correcta.</p>
+                    <div class="flexU">
+                        <label>
+                            <span>Documento id</span>
+                            <input type="text" class="input" name="documento_id" value="{{usuario.documento_id}}"
+                                disabled>
+                        </label>
+                        <label>
+                            <span>Nombres</span>
+                            <input type="text" class="input" name="nombres" value="{{usuario.nombres}}">
+                        </label>
+                    </div>
+                    <div class="flex">
+                        <label>
+                            <span>Apellidos</span>
+                            <input type="text" class="input" name="apellidos" value="{{usuario.apellidos}}">
+                        </label>
+                        <label>
+                            <span>Telefono</span>
+                            <input type="text" class="input" name="telefono" value="{{usuario.telefono}}">
+                        </label>
+                    </div>
+                    <div class="flex">
+                        <label>
+                            <span>Correo</span>
+                            <input type="text" class="input" name="correo" value="{{usuario.correo}}">
+                        </label>
+
+
+                    </div>
+                    <div class="flex">
+
+                        <div class="select">
+                            <select name="equipo_trabajo_id" id="format">
+                                <option disabled>Equipo</option>
+                                <option selected disabled id="texto_a_cambiar_equipo">{{usuario.equipo_trabajo_id}}
+                                </option>
+                                {{#if equiposTrabajo}}
+                                {{#each equiposTrabajo}}
+                                <option value="{{equipo_trabajo_id}}">{{nombre}}</option>
+                                {{/each}}
+                                {{else}}
+                                <option disabled>No hay equipos disponibles</option>
+                                {{/if}}
+                            </select>
+                        </div>
+                        <div class="select">
+                            <select name="instrumento_archivistico_id" id="format">
+                                <option disabled>Instrumento archivistico</option>
+                                <option disabled selected >
+                                    {{usuario.instrumento_archivistico_id}}
+                                </option>
+                                {{#if iArchivistico}}
+                                {{#each iArchivistico}}
+                                <option value="{{instrumento_archivistico_id}}">{{nombre}}</option>
+                                {{/each}}
+                                {{else}}
+                                <option disabled>No hay instrumentos archivisticos disponibles</option>
+                                {{/if}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="botones-formU">
+                        <a href="/indexAdmin" class="cancelarU"><span>Volver</span></a>
+                        <button class="crearU" name="cancelar">Editar</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+</body>
