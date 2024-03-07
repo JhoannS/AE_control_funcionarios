@@ -283,14 +283,14 @@ router.post(
 
       // Guardar el archivo en la base de datos como .pdf
       const nombreArchivo = archivoPdf.originalname;
-      const fechaActualizacion = req.body.fecha_actualizacion;
+  
 
       // Mueve el archivo subido de la carpeta temporal a la carpeta de destino
       fs.renameSync(archivoPdf.path, `src/uploads/${nombreArchivo}`);
 
       // Guardar en la base de datos
-      const query = "UPDATE EvidenciaTrabajo SET fecha_actualizacion = ?, archivoPdf = ?, estado = 'Entregado' WHERE evidencia_trabajo_id = ?";
-      await pool.query(query, [fechaActualizacion, nombreArchivo, id]);
+      const query = "UPDATE EvidenciaTrabajo SET  archivoPdf = ?, estado = 'Entregado' WHERE evidencia_trabajo_id = ?";
+      await pool.query(query, [nombreArchivo, id]);
 
       console.log("Evidencia actualizada en la base de datos:", nombreArchivo);
 
