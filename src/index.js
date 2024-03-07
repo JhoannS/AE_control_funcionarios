@@ -68,6 +68,6 @@ app.use(require("./routes/indexFun"));
 app.use(express.static(path.join(__dirname, "public")));
 
 // iniciar el servidor
-app.listen(app.get("port"), () => {
+app.listen(app.get("port"),"0.0.0.0", () => {
   console.log(">>> Servidor corriendo en el puerto:", app.get("port"));
 });
