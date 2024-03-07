@@ -35,8 +35,7 @@ app.use(
     secret: "secretKey",
     resave: false,
     saveUninitialized: false,
-    store: new MySQLStore(database),
-    proxy: true
+    store: new MySQLStore(database)
   })
 );
 app.use(flash());
