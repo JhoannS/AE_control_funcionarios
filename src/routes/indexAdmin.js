@@ -277,8 +277,8 @@ router.post(
       const pdfData = archivoPdf.buffer;
 
       // Guardar el archivo en la base de datos como binario
-      const fechaActualizacion = req.body.fecha_act;
-      const query = "UPDATE EvidenciaTrabajo SET fecha_actualizacion = ?, archivoPdf = ? , estado = 'Entregado' WHERE evidencia_trabajo_id = ?";
+      const fechaActualizacion = req.body.fecha_actualizacion;
+      const query = "UPDATE EvidenciaTrabajo SET fecha_actualizacion = act , archivoPdf = ? , estado = 'Entregado' WHERE evidencia_trabajo_id = ?";
       await pool.query(query, [fechaActualizacion, pdfData, id]);
 
       console.log("Evidencia actualizada en la base de datos:", archivoPdf.originalname);
