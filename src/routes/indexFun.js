@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const pool = require('../database');
 const fs = require('fs');
-const multer = require("multer");
 const { estaLogueado } = require("../lib/auth");
 
 // ::::::::::::::::::::::::::::::::::::::::::
