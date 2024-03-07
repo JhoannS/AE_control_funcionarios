@@ -115,15 +115,7 @@ router.get("/indexFun/subirEvidencia/:id", estaLogueado ,async (req, res) => {
 });
 
 // SUBIR EVIDENCIA POR PARTE DEL ADMINISTRADOR
-const upload = multer({
-  dest: "uploads/",
-  fileFilter: function (req, file, cb) {
-    if (!file.originalname.match(/\.(pdf)$/)) {
-      return cb(new Error("Solo se permiten archivos PDF"));
-    }
-    cb(null, true);
-  },
-});
+
 router.post(
   "/indexFun/subirEvidencia/:id",
   upload.single("archivoPdf"),estaLogueado ,
