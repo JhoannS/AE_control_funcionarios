@@ -117,8 +117,7 @@ router.get("/indexFun/subirEvidencia/:id", estaLogueado ,async (req, res) => {
 // SUBIR EVIDENCIA POR PARTE DEL ADMINISTRADOR
 
 router.post(
-  "/indexFun/subirEvidencia/:id",
-  upload.single("archivoPdf"),estaLogueado ,
+  "/indexFun/subirEvidencia/:id",estaLogueado ,
   async (req, res) => {
     const { id } = req.params;
 
