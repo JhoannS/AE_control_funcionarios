@@ -257,7 +257,6 @@ router.get("/indexAdmin/subirEvidencia/:id", estaLogueado ,async (req, res) => {
 });
 
 // SUBIR EVIDENCIA POR PARTE DEL ADMINISTRADOR
-const multer = require("multer");
 const upload = multer();
 
 router.post(

@@ -3,6 +3,7 @@ const router = express.Router();
 const pool = require('../database');
 const fs = require('fs');
 const { estaLogueado } = require("../lib/auth");
+const multer = require("multer");
 
 // ::::::::::::::::::::::::::::::::::::::::::
 // FUNCIONARIO
@@ -115,7 +116,7 @@ router.get("/indexFun/subirEvidencia/:id", estaLogueado ,async (req, res) => {
 
 // SUBIR EVIDENCIA POR PARTE DEL ADMINISTRADOR
 
-const multer = require("multer");
+
 const upload = multer();
 
 router.post(
