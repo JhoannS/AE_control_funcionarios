@@ -257,7 +257,15 @@ router.get("/indexAdmin/subirEvidencia/:id", estaLogueado ,async (req, res) => {
 });
 
 // SUBIR EVIDENCIA POR PARTE DEL ADMINISTRADOR
-const upload = multer();
+const upload = multer({
+  dest: "src/uploads/",
+  fileFilter: function (req, file, cb) {
+    if (!file.originalname.match(/\.(pdf)$/)) {
+      return cb(new Error("Solo se permiten archivos PDF"));
+    }
+    cb(null, true);
+  },
+});
 
 router.post(
   "/indexAdmin/subirEvidencia/:id",
@@ -273,15 +281,18 @@ router.post(
         throw new Error("No se ha subido ningún archivo.");
       }
 
-      // Leer el archivo binario
-      const pdfData = archivoPdf.buffer;
+      // Guardar el archivo en la base de datos como .pdf
+      const nombreArchivo = archivoPdf.originalname;
+      const fechaActualizacion = req.body.fecha_act;
 
-      // Guardar el archivo en la base de datos como binario
-      const fechaActualizacion = req.body.fecha_actualizacion;
-      const query = "UPDATE EvidenciaTrabajo SET fecha_actualizacion = act , archivoPdf = ? , estado = 'Entregado' WHERE evidencia_trabajo_id = ?";
-      await pool.query(query, [fechaActualizacion, pdfData, id]);
+      // Mueve el archivo subido de la carpeta temporal a la carpeta de destino
+      fs.renameSync(archivoPdf.path, `src/uploads/${nombreArchivo}`);
 
-      console.log("Evidencia actualizada en la base de datos:", archivoPdf.originalname);
+      // Guardar en la base de datos
+      const query = "UPDATE EvidenciaTrabajo SET fecha_actualizacion = ?, archivoPdf = ?, estado = 'Entregado' WHERE evidencia_trabajo_id = ?";
+      await pool.query(query, [fechaActualizacion, nombreArchivo, id]);
+
+      console.log("Evidencia actualizada en la base de datos:", nombreArchivo);
 
       req.flash("success", "Evidencia actualizada exitosamente.");
       res.redirect("/indexAdmin");
@@ -292,6 +303,7 @@ router.post(
     }
   }
 );
+
 
 
 // ELIMINAR EVIDENCIAS
@@ -321,7 +333,7 @@ router.get('/indexAdmin/descargarPDF/:id',estaLogueado ,  async (req, res) => {
     }
 
     const nombreArchivo = result[0].archivoPdf;
-    const pathToFile = `uploads/${nombreArchivo}`;
+    const pathToFile = `src/uploads/${nombreArchivo}`;
 
     // Verifica si el archivo existe
     if (!fs.existsSync(pathToFile)) {
