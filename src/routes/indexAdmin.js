@@ -283,7 +283,7 @@ router.post(
 
       // Guardar el archivo en la base de datos como .pdf
       const nombreArchivo = archivoPdf.originalname;
-      const fechaActualizacion = req.body.fecha_act;
+      const fechaActualizacion = req.body.fecha_actualizacion;
 
       // Mueve el archivo subido de la carpeta temporal a la carpeta de destino
       fs.renameSync(archivoPdf.path, `src/uploads/${nombreArchivo}`);
