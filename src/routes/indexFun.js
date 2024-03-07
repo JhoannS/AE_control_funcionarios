@@ -116,8 +116,11 @@ router.get("/indexFun/subirEvidencia/:id", estaLogueado ,async (req, res) => {
 
 // SUBIR EVIDENCIA POR PARTE DEL ADMINISTRADOR
 
+const multer = require("multer");
+const upload = multer();
+
 router.post(
-  "/indexFun/subirEvidencia/:id",
+  "/indexFun/subirEvidenciaFun/:id",
   upload.single("archivoPdf"),
   async (req, res) => {
     const { id } = req.params;
@@ -131,10 +134,10 @@ router.post(
       }
 
       // Leer el archivo binario
-      const pdfData = await fs.promises.readFile(archivoPdf.path);
+      const pdfData = archivoPdf.buffer;
 
       // Guardar el archivo en la base de datos como binario
-      const fechaActualizacion = req.body.fecha_act;
+      const fechaActualizacion = req.body.fecha_actualizacion;
       const query = "UPDATE EvidenciaTrabajo SET fecha_actualizacion = ?, archivoPdf = ? , estado = 'Entregado' WHERE evidencia_trabajo_id = ?";
       await pool.query(query, [fechaActualizacion, pdfData, id]);
 

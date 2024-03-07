@@ -257,18 +257,12 @@ router.get("/indexAdmin/subirEvidencia/:id", estaLogueado ,async (req, res) => {
 });
 
 // SUBIR EVIDENCIA POR PARTE DEL ADMINISTRADOR
-const upload = multer({
-  dest: "uploads/",
-  fileFilter: function (req, file, cb) {
-    if (!file.originalname.match(/\.(pdf)$/)) {
-      return cb(new Error("Solo se permiten archivos PDF"));
-    }
-    cb(null, true);
-  },
-});
+const multer = require("multer");
+const upload = multer();
+
 router.post(
   "/indexAdmin/subirEvidencia/:id",
-  upload.single("archivoPdf"),estaLogueado ,
+  upload.single("archivoPdf"),
   async (req, res) => {
     const { id } = req.params;
 
@@ -280,18 +274,15 @@ router.post(
         throw new Error("No se ha subido ningún archivo.");
       }
 
-      // Guardar el archivo en la base de datos como .pdf
-      const nombreArchivo = archivoPdf.originalname;
+      // Leer el archivo binario
+      const pdfData = archivoPdf.buffer;
+
+      // Guardar el archivo en la base de datos como binario
       const fechaActualizacion = req.body.fecha_act;
+      const query = "UPDATE EvidenciaTrabajo SET fecha_actualizacion = ?, archivoPdf = ? , estado = 'Entregado' WHERE evidencia_trabajo_id = ?";
+      await pool.query(query, [fechaActualizacion, pdfData, id]);
 
-      // Mueve el archivo subido de la carpeta temporal a la carpeta de destino
-      fs.renameSync(archivoPdf.path, `uploads/${nombreArchivo}`);
-
-      // Guardar en la base de datos
-      const query = "UPDATE EvidenciaTrabajo SET fecha_actualizacion = ?, archivoPdf = ?, estado = 'Entregado' WHERE evidencia_trabajo_id = ?";
-      await pool.query(query, [fechaActualizacion, nombreArchivo, id]);
-
-      console.log("Evidencia actualizada en la base de datos:", nombreArchivo);
+      console.log("Evidencia actualizada en la base de datos:", archivoPdf.originalname);
 
       req.flash("success", "Evidencia actualizada exitosamente.");
       res.redirect("/indexAdmin");
@@ -302,6 +293,7 @@ router.post(
     }
   }
 );
+
 
 // ELIMINAR EVIDENCIAS
 router.get('/indexAdmin/eliminarEvi/:id',estaLogueado ,async (req, res)=>{
