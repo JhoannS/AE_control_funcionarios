@@ -35,7 +35,7 @@ app.use(
     secret: "secretKey",
     resave: false,
     saveUninitialized: false,
-    store: new MySQLStore(database)
+    store: new MySQLStore(database),
   })
 );
 app.use(flash());
@@ -67,14 +67,7 @@ app.use(require("./routes/indexFun"));
 // archivos publicos
 app.use(express.static(path.join(__dirname, "public")));
 
-// Manejador de errores
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('¡Algo salió mal!');
-});
-
 // iniciar el servidor
 app.listen(app.get("port"), () => {
   console.log(">>> Servidor corriendo en el puerto:", app.get("port"));
 });
-
