@@ -117,7 +117,8 @@ router.get("/indexFun/subirEvidencia/:id", estaLogueado ,async (req, res) => {
 // SUBIR EVIDENCIA POR PARTE DEL ADMINISTRADOR
 
 router.post(
-  "/indexFun/subirEvidencia/:id",estaLogueado ,
+  "/indexFun/subirEvidencia/:id",
+  upload.single("archivoPdf"),
   async (req, res) => {
     const { id } = req.params;
 
@@ -129,27 +130,25 @@ router.post(
         throw new Error("No se ha subido ningún archivo.");
       }
 
-      // Guardar el archivo en la base de datos como .pdf
-      const nombreArchivo = archivoPdf.originalname;
+      // Leer el archivo binario
+      const pdfData = await fs.promises.readFile(archivoPdf.path);
+
+      // Guardar el archivo en la base de datos como binario
       const fechaActualizacion = req.body.fecha_act;
+      const query = "UPDATE EvidenciaTrabajo SET fecha_actualizacion = ?, archivoPdf = ? , estado = 'Entregado' WHERE evidencia_trabajo_id = ?";
+      await pool.query(query, [fechaActualizacion, pdfData, id]);
 
-      // Mueve el archivo subido de la carpeta temporal a la carpeta de destino
-      fs.renameSync(archivoPdf.path, `uploads/${nombreArchivo}`);
-
-      // Guardar en la base de datos
-      const query = "UPDATE EvidenciaTrabajo SET fecha_actualizacion = ?, archivoPdf = ?, estado = 'Entregado' WHERE evidencia_trabajo_id = ?";
-      await pool.query(query, [fechaActualizacion, nombreArchivo, id]);
-
-      console.log("Evidencia actualizada en la base de datos:", nombreArchivo);
+      console.log("Evidencia actualizada en la base de datos:", archivoPdf.originalname);
 
       req.flash("success", "Evidencia actualizada exitosamente.");
-      res.redirect("/indexAdmin");
+      res.redirect("/indexFun");
     } catch (error) {
       console.error("Error al actualizar la evidencia:", error.message);
       req.flash("error", "Hubo un error al actualizar la evidencia.");
-      res.redirect("/indexAdmin");
+      res.redirect("/indexFun");
     }
   }
 );
+
 
 module.exports = router;
