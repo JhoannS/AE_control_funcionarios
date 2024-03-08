@@ -2,7 +2,7 @@
 
 :root {
     --blanco: aliceblue;
-    --primario: #2E97A7;
+    --primario: #043771;
     --azul_oscuro: #113946;
     --verde: #79AC78;
     --rojo: #FF6969;
@@ -35,7 +35,19 @@ input {
     top: 0;
     left: 0;
 }
-
+.imgL{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.img-arriba{
+    width: 220px;
+    margin: 20px;
+}
+.img-2{
+    width: 100px;
+    margin: 0 0 30PX 0;
+}
 .signin-signup {
     position: absolute;
     top: 50%;
@@ -430,3 +442,53 @@ form.sign-in-form {
     }
   }
   
+.botones-formL {
+    display: flex;
+    justify-content: center;
+    width:60%;
+}
+
+.crear {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 15px;
+    width: 50%;
+    border: 2px solid var(--primario);
+    border-radius: 10px;
+    color: var(--primario);
+    font-size: 15px;
+    transform: .3s ease;
+    margin: 5px;
+    transition: all .5s ease;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.crear:hover {
+    background-color: var(--primario);
+    color: aliceblue;
+}
+
+.entrar {
+    border: none;
+    outline: none;
+    background-color: var(--primario);
+    padding: 15px;
+    width: 50%;
+
+    border-radius: 10px;
+    color: var(--blanco);
+    font-size: 15px;
+    transform: .3s ease;
+    margin: 5px;
+    transition: all .5s ease;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.entrar:hover {
+    background-color: var(--verde);
+}
