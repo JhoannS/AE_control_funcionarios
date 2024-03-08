@@ -15,6 +15,7 @@ function ensureAuthenticated(req, res, next) {
     } else {
       ruta = "/"; // Redirigir a la página principal en caso de un rol desconocido o no definido
     }
+    req.flash("message", "Debes iniciar primero sesion.")
     return res.redirect(ruta);
   }
   next(); // Continuar si el usuario no está autenticado
@@ -28,9 +29,17 @@ router.get("/", noEstaLogueado, (req, res) => {
 
 // Ruta para manejar el inicio de sesión
 router.post("/validate", ensureAuthenticated ,(req, res, next) => {
-  passport.authenticate("local.iniciarSesion", (err, user, ruta) => {
+  passport.authenticate("local.iniciarSesion", (err, user, ruta, validarCampos) => {
     if (err) {
       return next(err);
+    }
+    function validarCampos(req) {
+      const { correo, contrasenia } = req.body;
+      return correo && contrasenia; // Devuelve true si todos los campos están llenos, false si no
+    }
+    if(!validarCampos(req)){
+        req.flash("message", "Ningún campo puede quedar vacío.");
+        return res.redirect("/");
     }
     if (!user) {
       return res.redirect("/");
@@ -39,6 +48,8 @@ router.post("/validate", ensureAuthenticated ,(req, res, next) => {
       if (err) {
         return next(err);
       }
+      req.flash("success", `Bienvenido nuevamente ${user.nombres}`);
+
       return res.redirect(ruta);
     });
   })(req, res, next);
@@ -49,19 +60,34 @@ router.get("/registrate", noEstaLogueado, (req, res) => {
   res.render("registrarse");
 });
 
+
 router.post(
   "/signIn",
-  passport.authenticate("local.registrate", {
-    successRedirect: "/",
-    failureRedirect: "/",
-    failureFlash: true,
-  })
+  (req, res, next) => {
+    function validarCampos(req) {
+      const { documento_id, correo, contrasenia } = req.body;
+      return documento_id && correo && contrasenia; // Devuelve true si todos los campos están llenos, false si no
+    }
+    // Validar campos antes de la autenticación
+    if (!validarCampos(req)) {
+      req.flash("message", "Ningún campo puede quedar vacío.");
+      return res.redirect("/registrate");
+    }
+
+    // Usar passport.authenticate con la configuración
+    passport.authenticate("local.registrate", {
+      successRedirect: "/",
+      failureRedirect: "/",
+      failureFlash: true,
+    })(req, res, next);
+  }
 );
 
 // Ruta para manejar el cierre de sesión
 router.get("/logout", (req, res, next) => {
   req.logOut(req.user, err => {
       if(err) return next(err);
+      req.flash("success", "Nos vemos luego.")
       res.redirect("/");  
   });
 });

@@ -20,12 +20,13 @@ passport.use(
       );
       const resultado = resultRaw[0];
 
+    
       if (resultado.length > 0) {
         const user = resultado[0];
         const validPassword = await helpers.matchPassword(
           contrasenia,
           user.contrasenia
-        );
+        )
         if (validPassword) {
           // Verificar el rol del usuario y redirigir en consecuencia
           let ruta;
@@ -37,12 +38,15 @@ passport.use(
           // Redirigir al usuario a la ruta correspondiente
           return done(null, user, ruta);
         }
-      }
+        return done(null, false, req.flash("message", "Contraseña incorrecta"));
 
-      done(null, false, req.flash("message", "Credenciales incorrectas."));
+      }
+      done(null, false, req.flash("message", "Credenciales desconocidas"));
+
     }
   )
 );
+
 
 ///
 
@@ -70,7 +74,8 @@ passport.use(
         newFuncionario,
       ]);
       const resultado = resultRaw;
-      console.log(resultado);
+      
+      console.log(`>>> Se acaba de registrar el usuario: ${resultado} `);
       newFuncionario.documento_id = resultado.insertId;
       return done(null, newFuncionario[0]);
     }

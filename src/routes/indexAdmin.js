@@ -124,11 +124,19 @@ router.post("/indexAdmin",estaLogueado ,async (req, res) => {
 });
 
 // ELIMINAR FUNCIONARIO
-router.get("/indexAdmin/eliminarFun/:id", estaLogueado ,async (req, res) => {
+router.get("/indexAdmin/eliminarFun/:id", estaLogueado, async (req, res) => {
   const { id } = req.params;
-  await pool.query("DELETE FROM Funcionario WHERE documento_id = ?", [id]);
-  req.flash("success", "Funcionario eliminado exitosamente.");
-  res.redirect("/indexAdmin");
+
+  try {
+    await pool.query("DELETE FROM Funcionario WHERE documento_id = ?", [id]);
+    req.flash("success", "Funcionario eliminado exitosamente.");
+    res.redirect("/indexAdmin");
+    
+  } catch (error) {
+    console.error("Error deleting Funcionario:", error);
+    req.flash("message", "NO se puede eliminar el funcionario porque tiene tareas asignadas.");
+    res.redirect("/indexAdmin");
+  }
 });
 
 // ACTUALIZAR FUNCIONARIO {FORMULARIO}
@@ -329,7 +337,7 @@ router.get('/indexAdmin/descargarPDF/:id',estaLogueado ,  async (req, res) => {
 
     if (result.length === 0) {
       console.log('No se encontró ningún archivo PDF con ese ID.');
-      return res.status(404).alert('Archivo no encontrado');
+      return req.flash("message", "evidencia no encontrada con ese ID");
     }
 
     const nombreArchivo = result[0].archivoPdf;
@@ -338,7 +346,7 @@ router.get('/indexAdmin/descargarPDF/:id',estaLogueado ,  async (req, res) => {
     // Verifica si el archivo existe
     if (!fs.existsSync(pathToFile)) {
       console.log('El archivo no existe en la ruta:', pathToFile);
-      return res.status(404).send('Archivo no encontrado');
+      return res.status(404).send('Aun no han subido esta evidencia.');
     }
 
     // Crea un flujo de lectura del archivo
@@ -374,6 +382,7 @@ router.get("/indexAdmin/actualizarEvi/:id",estaLogueado , async (req, res) => {
   res.render("Admin/form_update_evi", {
     evidencia: resultDatosEvi[0],
     funcionario: resultFun,
+    user: req.user
    
   });
 });
