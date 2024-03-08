@@ -78,7 +78,7 @@ router.get('/indexFun/descargarPDF/:id',estaLogueado ,  async (req, res) => {
     }
 
     const nombreArchivo = result[0].archivoPdf;
-    const pathToFile = `uploads/${nombreArchivo}`;
+    const pathToFile = `src/uploads/${nombreArchivo}`;
 
     // Verifica si el archivo existe
     if (!fs.existsSync(pathToFile)) {
