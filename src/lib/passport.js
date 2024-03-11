@@ -95,7 +95,7 @@ passport.deserializeUser(async (documento_id, done) => {
     );
     const user = resultRows; // Accede al primer elemento del array de resultados
   
-    done(null, user[0][0]);
+    done(null, user[0]);
   } catch (error) {
     console.error("Error al buscar usuario:", error);
     done(error);
