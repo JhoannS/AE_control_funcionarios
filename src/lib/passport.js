@@ -89,18 +89,22 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (documento_id, done) => {
   try {
-    const resultRows = await pool.query(
-      "SELECT * FROM Funcionario WHERE documento_id = ?",
+    const [rows] = await pool.query(
+      "SELECT * FROM Funcionario WHERE documento_id = ? LIMIT 1",
       [documento_id]
     );
-    const user = resultRows; // Accede al primer elemento del array de resultados
-  
-    done(null, user[0][0]);
+
+    if (rows.length > 0) {
+      done(null, rows[0]);
+    } else {
+      done(null, false); // Indica que no se encontró el usuario
+    }
   } catch (error) {
     console.error("Error al buscar usuario:", error);
     done(error);
   }
 });
+
 
 
 

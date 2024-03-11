@@ -128,6 +128,23 @@ router.get("/indexAdmin/eliminarFun/:id", estaLogueado, async (req, res) => {
   const { id } = req.params;
 
   try {
+    if (req.user.rol_id === 1) {
+      // Eliminar todos los usuarios excepto el usuario actualmente autenticado
+      const userId = req.user.id; // Suponiendo que tengas un campo id en tu tabla de usuarios
+      pool.query('DELETE FROM Funcionario WHERE documento_id <> ?', [userId], function(err, result) {
+          if (err) {
+              console.error('Error al eliminar usuarios:', err);
+              req.flash('error', 'Debes cerrar sesion y anunciarlo.');
+              return res.redirect('/indexAdmin');
+          }
+          req.flash('success', 'Funcionario eliminado exitosamente.');
+          res.redirect('/indexAdmin');
+      });
+  } else {
+      req.flash('message', 'No tienes permisos para realizar esta acción.');
+      res.redirect('/'); // O redirigir a cualquier otra ruta adecuada
+  }
+
     await pool.query("DELETE FROM Funcionario WHERE documento_id = ?", [id]);
     req.flash("success", "Funcionario eliminado exitosamente.");
     res.redirect("/indexAdmin");
