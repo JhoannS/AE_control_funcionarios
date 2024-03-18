@@ -821,6 +821,7 @@ section .details span {
 /* mensajes de flash */
 .notificacion{
     position: absolute;
+    z-index: 9999999;
     top: 50px;
     right: 0px;
     width: max-content;
@@ -837,6 +838,7 @@ section .details span {
   
   .notificacion_progreso{
     position: absolute;
+    z-index: 9999999;
     left: 5px;
     bottom: 5px;
     width: calc(100% - 10px);
